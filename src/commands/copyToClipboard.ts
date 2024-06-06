@@ -1,10 +1,12 @@
 import * as vsc from 'vscode';
+
 import { APIConfigEntry } from '../providers/entries/APIConfigEntry';
 import { StatsigConfig } from '../state/ProjectsState';
 
 export default function run(arg: string | StatsigConfig): void {
   const s = typeof arg === 'string' ? arg : arg.data.name;
   void vsc.env.clipboard.writeText(s);
+  void vsc.window.showInformationMessage('Copied to clipboard: ' + s);
 }
 
 export function register(): vsc.Disposable {
