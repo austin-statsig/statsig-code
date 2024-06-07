@@ -28,7 +28,7 @@ export function activate(context: vsc.ExtensionContext): void {
   const globalState: vsc.Memento = context.globalState;
 
   const getData = (key: string): boolean => {
-    return key ? globalState.get(key) ?? false : false;
+    return globalState.get(key) ?? false;
   };
 
   const getCommandDisposable = vsc.commands.registerCommand(
@@ -67,9 +67,8 @@ export function activate(context: vsc.ExtensionContext): void {
 
   const refreshViewsDisposable = vsc.commands.registerCommand(
     'statsig.refreshViews',
-    async (): Promise<void> => {
+    (): void => {
       refreshViews();
-      return Promise.resolve();
     },
   );
 
